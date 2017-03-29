@@ -1147,7 +1147,7 @@ parse_hash_fingerprint(const char *str, int nbytes, int msglevel, struct gc_aren
     const char *cp = str;
     uint8_t *ret = (uint8_t *) gc_malloc(nbytes, true, gc);
     char term = 1;
-    int byte;
+    unsigned int byte;
     char bs[3];
 
     for (i = 0; i < nbytes; ++i)

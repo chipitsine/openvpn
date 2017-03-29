@@ -3184,7 +3184,7 @@ get_default_gateway(struct route_gateway_info *rgi)
                     unsigned int flags = 0;
                     char name[16];
                     name[0] = 0;
-                    const int np = sscanf(line, "%15s\t%x\t%x\t%x\t%*s\t%*s\t%d\t%x",
+                    const int np = sscanf(line, "%15s\t%x\t%x\t%x\t%*s\t%*s\t%u\t%x",
                                           name,
                                           &net_x,
                                           &gw_x,
