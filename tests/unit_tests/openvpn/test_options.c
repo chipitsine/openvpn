@@ -21,6 +21,7 @@
 #include "manage.h"
 #include "route.h"
 #include "mtu.h"
+#include "sig.h"
 #include "socket.h"
 #include "crypto_backend.h"
 #include "options.h"

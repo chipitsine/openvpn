@@ -73,6 +73,7 @@ options_SOURCES = test_options.c \
 	$(openvpn_srcdir)/manage.c \
 	$(openvpn_srcdir)/route.c \
 	$(openvpn_srcdir)/mtu.c \
+	$(openvpn_srcdir)/sig.c \
 	$(openvpn_srcdir)/socket.c \
         $(openvpn_srcdir)/options.c
 
