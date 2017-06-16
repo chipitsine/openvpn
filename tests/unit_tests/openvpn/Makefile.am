@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = foreign
 
-check_PROGRAMS=
+check_PROGRAMS= options
 
 if HAVE_LD_WRAP_SUPPORT
 check_PROGRAMS += argv_testdriver buffer_testdriver
