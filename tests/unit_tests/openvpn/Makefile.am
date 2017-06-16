@@ -56,3 +56,12 @@ tls_crypt_testdriver_SOURCES = test_tls_crypt.c mock_msg.c \
 	$(openvpn_srcdir)/packet_id.c \
 	$(openvpn_srcdir)/platform.c \
 	$(openvpn_srcdir)/tls_crypt.c
+
+options_CFLAGS  = @TEST_CFLAGS@ \
+        -I$(openvpn_includedir) -I$(compat_srcdir) -I$(openvpn_srcdir) \
+        $(OPTIONAL_CRYPTO_CFLAGS)
+options_LDFLAGS = @TEST_LDFLAGS@ \
+        $(OPTIONAL_CRYPTO_LIBS)
+options_SOURCES = test_options.c \
+        $(openvpn_srcdir)/options.c
+
