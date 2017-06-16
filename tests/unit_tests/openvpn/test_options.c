@@ -14,6 +14,9 @@
 #include "buffer.h"
 #include "error.h"
 #include "misc.h"
+#include "platform.h"
+#include "argv.h"
+#include "fdmisc.h"
 #include "tun.h"
 #include "options.h"
 
