@@ -3,6 +3,8 @@
 #include <setjmp.h>
 #include <cmocka.h>
 
+#include "buffer.h"
+
 static void
 usage_test(void **state)
 {
