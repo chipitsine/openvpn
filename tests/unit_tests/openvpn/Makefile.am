@@ -64,5 +64,6 @@ options_LDFLAGS = @TEST_LDFLAGS@ \
         $(OPTIONAL_CRYPTO_LIBS)
 options_SOURCES = test_options.c \
 	$(openvpn_srcdir)/buffer.c \
+	$(openvpn_srcdir)/error.c \
         $(openvpn_srcdir)/options.c
 
