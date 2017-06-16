@@ -13,6 +13,8 @@
 
 #include "buffer.h"
 #include "error.h"
+#include "misc.h"
+#include "tun.h"
 #include "options.h"
 
 static void

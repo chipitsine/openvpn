@@ -65,5 +65,7 @@ options_LDFLAGS = @TEST_LDFLAGS@ \
 options_SOURCES = test_options.c \
 	$(openvpn_srcdir)/buffer.c \
 	$(openvpn_srcdir)/error.c \
+	$(openvpn_srcdir)/misc.c \
+	$(openvpn_srcdir)/tun.c \
         $(openvpn_srcdir)/options.c
 
