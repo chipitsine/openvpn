@@ -22,6 +22,7 @@
 #include "route.h"
 #include "mtu.h"
 #include "sig.h"
+#include "plugin.h"
 #include "socket.h"
 #include "crypto_backend.h"
 #include "options.h"
