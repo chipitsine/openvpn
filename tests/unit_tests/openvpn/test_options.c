@@ -12,6 +12,7 @@
 #include <cmocka.h>
 
 #include "buffer.h"
+#include "options.h"
 
 static void
 usage_test(void **state)
