@@ -18,6 +18,9 @@
 #include "argv.h"
 #include "fdmisc.h"
 #include "tun.h"
+#include "route.h"
+#include "socket.h"
+#include "crypto_backend.h"
 #include "options.h"
 
 static void
