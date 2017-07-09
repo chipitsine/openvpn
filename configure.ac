@@ -722,6 +722,13 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
                    ,
                    [AC_MSG_ERROR([gcc-mingw is too old, please update])])
 
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
+[[#include <fwpmu.h>
+]])],
+                   ,
+                   [AC_MSG_ERROR([gcc-mingw is 14.04, please update])])
+
+
 # normal autoconf function checking does not find inet_ntop/inet_pton
 # because they need to include the actual header file and link ws2_32.dll
 	LIBS="${LIBS} -lws2_32"
