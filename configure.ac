@@ -708,6 +708,20 @@ m4_define(
 	[setsockopt getsockopt getsockname poll]dnl
 )
 if test "${WIN32}" = "yes"; then
+
+#
+# check for ENETUNREACH 
+# at least Debian 7 is shipped with gcc-mingw-w64-4.6.3, which is too old
+#
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM(
+[[#include <errno.h>
+#if !defined (ENETUNREACH)
+# error ENETUNREACH not defined
+#endif
+]])],
+                   ,
+                   [AC_MSG_ERROR([gcc-mingw is too old, please update])])
+
 # normal autoconf function checking does not find inet_ntop/inet_pton
 # because they need to include the actual header file and link ws2_32.dll
 	LIBS="${LIBS} -lws2_32"
