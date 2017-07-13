@@ -24,45 +24,45 @@ env:
 
 matrix:
   include:
-    - env: SSLLIB="openssl"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: gcc
-    - env: SSLLIB="openssl" OPENSSL_VERSION="1.1.0f"
+    - env: SSLLIB="openssl" OPENSSL_VERSION="1.1.0f" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: gcc
-    - env: SSLLIB="openssl"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: clang
-    - env: SSLLIB="openssl" OPENSSL_VERSION="1.1.0f"
+    - env: SSLLIB="openssl" OPENSSL_VERSION="1.1.0f" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: clang
-    - env: SSLLIB="mbedtls"
+    - env: SSLLIB="mbedtls" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: gcc
-    - env: SSLLIB="mbedtls"
+    - env: SSLLIB="mbedtls" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: clang
-    - env: SSLLIB="openssl" EXTRA_CONFIG="--disable-crypto" EXTRA_SCRIPT="make distcheck"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--disable-crypto --with-mem-check=valgrind" EXTRA_SCRIPT="make distcheck"
       os: linux
       compiler: clang
-    - env: SSLLIB="openssl" EXTRA_CONFIG="--disable-lzo"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--disable-lzo --with-mem-check=valgrind"
       os: linux
       compiler: clang
-    - env: SSLLIB="openssl" EXTRA_CONFIG="--enable-small"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--enable-small --with-mem-check=valgrind"
       os: linux
       compiler: clang
-    - env: SSLLIB="openssl"
+    - env: SSLLIB="openssl" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: osx
       osx_image: xcode7.3
       compiler: clang
-    - env: SSLLIB="mbedtls"
+    - env: SSLLIB="mbedtls" EXTRA_CONFIG="--with-mem-check=valgrind"
       os: osx
       osx_image: xcode7.3
       compiler: clang
-    - env: SSLLIB="openssl" CHOST=x86_64-w64-mingw32
+    - env: SSLLIB="openssl" CHOST=x86_64-w64-mingw32 EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: ": Win64 build only"
-    - env: SSLLIB="openssl" CHOST=i686-w64-mingw32
+    - env: SSLLIB="openssl" CHOST=i686-w64-mingw32 EXTRA_CONFIG="--with-mem-check=valgrind"
       os: linux
       compiler: ": Win32 build only"
   exclude:
@@ -76,6 +76,7 @@ addons:
       - liblz4-dev
       - linux-libc-dev
       - man2html
+      - valgrind
 
 cache:
   ccache: true
@@ -86,6 +87,7 @@ cache:
 before_install:
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew update     ; fi
   - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew install lzo; fi
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then brew install valgrind; fi
 
 install:
   - if [ ! -z "${CHOST}" ]; then unset CC; fi
