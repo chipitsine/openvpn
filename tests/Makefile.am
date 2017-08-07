@@ -14,7 +14,7 @@ MAINTAINERCLEANFILES = \
 
 SUBDIRS = unit_tests
 
-test_scripts = t_client.sh
+test_scripts = t_client.sh t_usage.sh
 if ENABLE_CRYPTO
 test_scripts += t_lpback.sh t_cltsrv.sh
 endif
