@@ -10,7 +10,7 @@ if [ "${TRAVIS_OS_NAME}" = "osx"   ]; then
 fi
 
 if [ "$CC" = "clang" ]; then 
-	export CFLAGS="-fsanitize=thread"
+	export CFLAGS="-fsanitize=thread" LDFLAGS="-fsanitize=thread"
 fi
 
 autoreconf -vi
