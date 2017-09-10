@@ -9,6 +9,10 @@ if [ "${TRAVIS_OS_NAME}" = "osx"   ]; then
 	export DYLD_LIBRARY_PATH="${PREFIX}/lib:${DYLD_LIBRARY_PATH:-}"
 fi
 
+if [ "$CC" = "clang" ]; then 
+	export CFLAGS="-fsanitize=thread"
+fi
+
 autoreconf -vi
 
 if [ -z ${CHOST+x} ]; then
