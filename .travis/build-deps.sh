@@ -86,6 +86,7 @@ download_openssl () {
 build_openssl_linux () {
     (
         cd "openssl-${OPENSSL_VERSION}/"
+	export CFLAGS="-ggdb"
         ./config shared --prefix="${PREFIX}" --openssldir="${PREFIX}" -DPURIFY
         make all install_sw
     )
