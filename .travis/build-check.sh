@@ -14,6 +14,10 @@ if [ "$CC" = "clang" ]; then
 	export CFLAGS="-ggdb -fsanitize=memory -fPIE -pie -fno-omit-frame-pointer" LDFLAGS="-fsanitize=memory -fPIE -pie -fno-omit-frame-pointer"
 fi
 
+if [ "$CC" = "gcc" ]; then
+        export CFLAGS="-ggdb -fsanitize=address" LDFLAGS="-fsanitize=address"
+fi
+
 autoreconf -vi
 
 if [ -z ${CHOST+x} ]; then
