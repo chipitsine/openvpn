@@ -70,8 +70,7 @@ dist_noinst_DATA = \
 	README.IPv6 TODO.IPv6 \
 	README.mbedtls \
 	openvpn.sln \
-	msvc-env.bat \
-	msvc-dev.bat \
+	msvc-env.props \
 	msvc-build.bat
 
 dist_noinst_HEADERS = \
