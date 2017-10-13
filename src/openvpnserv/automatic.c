@@ -130,24 +130,26 @@ close_if_open(HANDLE h)
 static bool
 match(const WIN32_FIND_DATA *find, LPCTSTR ext)
 {
-    int i;
+    size_t i, len_filename, len_ext;
 
     if (find->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
     {
         return false;
     }
 
-    if (!_tcslen(ext))
+    len_ext = _tcslen(ext);
+    if (!len_ext)
     {
         return true;
     }
 
-    i = _tcslen(find->cFileName) - _tcslen(ext) - 1;
-    if (i < 1)
+    len_filename = _tcslen(find->cFileName);
+    if (len_filename < len_ext + 2)
     {
         return false;
     }
 
+    i = len_filename - len_ext - 1;
     return find->cFileName[i] == '.' && !_tcsicmp(find->cFileName + i + 1, ext);
 }
 
@@ -155,16 +157,16 @@ match(const WIN32_FIND_DATA *find, LPCTSTR ext)
  * Modify the extension on a filename.
  */
 static bool
-modext(LPTSTR dest, int size, LPCTSTR src, LPCTSTR newext)
+modext(LPTSTR dest, size_t size, LPCTSTR src, LPCTSTR newext)
 {
-    int i;
+    size_t i;
 
     if (size > 0 && (_tcslen(src) + 1) <= size)
     {
         _tcscpy(dest, src);
         dest [size - 1] = TEXT('\0');
         i = _tcslen(dest);
-        while (--i >= 0)
+        while (i-- > 0)
         {
             if (dest[i] == TEXT('\\'))
             {

@@ -370,7 +370,7 @@ get_interface_metric(const NET_IFINDEX index, const ADDRESS_FAMILY family)
         }
         return ipiface.Metric;
     }
-    return -err;
+    return -(int)err;
 }
 
 /*
