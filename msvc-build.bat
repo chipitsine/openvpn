@@ -1,38 +1,35 @@
 @echo off
 rem Copyright (C) 2008-2012 Alon Bar-Lev <alon.barlev@gmail.com>
+rem Copyright (C) 2017 Simon Rozman <simon@rozman.si>
 
-@rem this stupid command needed for SetEnv.cmd to operate
-setlocal ENABLEDELAYEDEXPANSION
+setlocal
 
 cd /d %0\..
-call msvc-env.bat
 
-set PLATFORMS=Win32
-set CONFIGURATIONS=Release
-
-if exist "%VCHOME%\vcvarsall.bat" (
-	call "%VCHOME%\vcvarsall.bat"
-) else if exist "%VCHOME%\bin\vcvars32.bat" (
-	call "%VCHOME%\bin\vcvars32.bat"
-) else (
-	echo Cannot detect visual studio
+if "%VCINSTALLDIR%"=="" (
+	echo VCINSTALLDIR is not defined.
+	echo This command should be called from "Developer Command Prompt for VS 2017".
 	goto error
 )
 
-msbuild /help > nul 2>&1
-if errorlevel 1 set DO_VCBUILD=1
+MSBuild.exe /help > nul 2>&1
+if errorlevel 1 (
+	echo MSBuild.exe not found or failed. Is path to MSBuild.exe included in path?
+	echo This command should be called from "Developer Command Prompt for VS 2017".
+	goto error
+)
+
+set PLATFORMS=Win32 x64
+set CONFIGURATIONS=Release
 
 for %%p in (%PLATFORMS%) do (
+	if %%p=="Win32" call "%VCINSTALLDIR%Auxiliary\Build\vcvarsall.bat" x86
+	if %%p=="x64"   call "%VCINSTALLDIR%Auxiliary\Build\vcvarsall.bat" amd64
 	for %%c in (%CONFIGURATIONS%) do (
 		rmdir /q /s %SOURCEBASE%\%%p\%%c > nul 2>&1
 
-		if "%DO_VCBUILD%" NEQ "" (
-			vcbuild /errfile:error.log /showenv "%SOLUTION%" /rebuild /platform:%%p "%%c|%%p"
-			for %%f in (error.log) do if %%~zf GTR 0 goto error
-		) else  (
-			msbuild "%SOLUTION%" /p:Configuration="%%c" /p:Platform="%%p"
-			if errorlevel 1 goto error
-		)
+		MSBuild.exe openvpn.sln /p:Configuration="%%c" /p:Platform="%%p"
+		if errorlevel 1 goto error
 	)
 )
 

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <OPENVPN_DEPROOT>c:\Temp\openvpn-deps\</OPENVPN_DEPROOT>
+    <OPENSSL_HOME>%(OPENVPN_DEPROOT)</OPENSSL_HOME>
+    <LZO_HOME>%(OPENVPN_DEPROOT)</LZO_HOME>
+    <PKCS11H_HOME>%(OPENVPN_DEPROOT)</PKCS11H_HOME>
+    <TAP_WINDOWS_HOME>%(OPENVPN_DEPROOT)</TAP_WINDOWS_HOME>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IntDir>$(Configuration)\$(Platform)\</IntDir>
+    <OutDir>$(SolutionDir)$(Platform)-Output\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;_CRT_NONSTDC_NO_WARNINGS;NTDDI_VERSION=NTDDI_VISTA;_WIN32_WINNT=_WIN32_WINNT_VISTA;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)include\;$(SolutionDir)src\openvpn\;$(SolutionDir)src\compat\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="exists('$(SolutionDir)config-msvc-local.h')">
+    <ClCompile>
+      <PreprocessorDefinitions>HAVE_CONFIG_MSVC_LOCAL_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="OPENVPN_DEPROOT">
+      <Value>$(OPENVPN_DEPROOT)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="OPENSSL_HOME">
+      <Value>$(OPENSSL_HOME)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="LZO_HOME">
+      <Value>$(LZO_HOME)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="PKCS11H_HOME">
+      <Value>$(PKCS11H_HOME)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="TAP_WINDOWS_HOME">
+      <Value>$(TAP_WINDOWS_HOME)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

@@ -1,12 +1,13 @@
 # Copyright (C) 2008-2012 Alon Bar-Lev <alon.barlev@gmail.com>
+# Copyright (C) 2017 Simon Rozman <simon@rozman.si>
 
-CONFIG=$(SOURCEBASE)/version.m4
+CONFIG=$(SOURCEBASE)version.m4
 
-INPUT_MSVC_VER=$(SOURCEBASE)/config-msvc-version.h.in
-OUTPUT_MSVC_VER=$(SOURCEBASE)/config-msvc-version.h
+INPUT_MSVC_VER=$(SOURCEBASE)config-msvc-version.h.in
+OUTPUT_MSVC_VER=$(SOURCEBASE)config-msvc-version.h
 
-INPUT_PLUGIN=$(SOURCEBASE)/include/openvpn-plugin.h.in
-OUTPUT_PLUGIN=$(SOURCEBASE)/include/openvpn-plugin.h
+INPUT_PLUGIN=$(SOURCEBASE)include\openvpn-plugin.h.in
+OUTPUT_PLUGIN=$(SOURCEBASE)include\openvpn-plugin.h
 
 INPUT_PLUGIN_CONFIG=version.m4.in
 OUTPUT_PLUGIN_CONFIG=version.m4

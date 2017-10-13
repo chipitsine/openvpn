@@ -17,6 +17,8 @@
 Release
 Debug
 Win32-Output
+x64-Output
+.vs
 .deps
 .libs
 Makefile
@@ -46,7 +48,7 @@ m4/ltversion.m4
 m4/lt~obsolete.m4
 
 version.sh
-msvc-env-local.bat
+msvc-env-local.props
 config-msvc-local.h
 config-msvc-version.h
 doc/openvpn.8.html
@@ -55,6 +57,7 @@ distro/systemd/*.service
 sample/sample-keys/sample-ca/
 vendor/.build
 vendor/dist
+build/msvc/msvc-generate/version.m4
 
 tests/t_client.sh
 tests/t_client-*-20??????-??????/
