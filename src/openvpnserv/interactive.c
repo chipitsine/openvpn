@@ -1316,7 +1316,7 @@ RunOpenvpn(LPVOID p)
     STARTUPINFOW startup_info;
     PROCESS_INFORMATION proc_info;
     LPVOID user_env = NULL;
-    TCHAR ovpn_pipe_name[36];
+    TCHAR ovpn_pipe_name[256]; /* The entire pipe name string can be up to 256 characters long according to MSDN. */
     LPCWSTR exe_path;
     WCHAR *cmdline = NULL;
     size_t cmdline_size;
@@ -1478,7 +1478,7 @@ RunOpenvpn(LPVOID p)
     }
 
     openvpn_sntprintf(ovpn_pipe_name, _countof(ovpn_pipe_name),
-                      TEXT("\\\\.\\pipe\\openvpn\\service_%lu"), GetCurrentThreadId());
+                      TEXT("\\\\.\\pipe\\" PACKAGE "\\service_%lu"), GetCurrentThreadId());
     ovpn_pipe = CreateNamedPipe(ovpn_pipe_name,
                                 PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE | FILE_FLAG_OVERLAPPED,
                                 PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT, 1, 128, 128, 0, NULL);
@@ -1681,7 +1681,7 @@ CreateClientPipeInstance(VOID)
         initialized = TRUE;
     }
 
-    pipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\openvpn\\service"), flags,
+    pipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\" PACKAGE "\\service"), flags,
                            PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE,
                            PIPE_UNLIMITED_INSTANCES, 1024, 1024, 0, NULL);
     if (pipe == INVALID_HANDLE_VALUE)
