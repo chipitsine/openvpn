@@ -104,8 +104,6 @@
     <ResourceCompile />
     <Link>
       <SubSystem>Console</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalDependencies>fwpuclnt.lib;ntdll.lib;shlwapi.lib;netapi32.lib;userenv.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -116,8 +114,6 @@
     <ResourceCompile />
     <Link>
       <SubSystem>Console</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <AdditionalDependencies>fwpuclnt.lib;ntdll.lib;shlwapi.lib;netapi32.lib;userenv.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
