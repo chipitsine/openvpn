@@ -1,0 +1,15 @@
+version: msvc.{build}
+image: Visual Studio 2017
+configuration:
+- Debug
+- Release
+platform:
+- Win32
+- x64
+build:
+  project: openvpn.sln
+  parallel: true
+  verbosity: normal
+artifacts:
+- path: $(platform)-Output\$(configuration)\compat.lib
+- path: $(platform)-Output\$(configuration)\openvpnserv.exe
