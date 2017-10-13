@@ -38,12 +38,12 @@
 #ifdef HAVE_VERSIONHELPERS_H
 #include <versionhelpers.h>
 #else
-#include "compat-versionhelpers.h"
+#include <compat-versionhelpers.h>
 #endif
 
-#include "openvpn-msg.h"
+#include <openvpn-msg.h>
 #include "validate.h"
-#include "block_dns.h"
+#include <block_dns.h>
 
 #define IO_TIMEOUT  2000 /*ms*/
 

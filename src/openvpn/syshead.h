@@ -24,7 +24,7 @@
 #ifndef SYSHEAD_H
 #define SYSHEAD_H
 
-#include "compat.h"
+#include <compat.h>
 #include <stdbool.h>
 
 /* branch prediction hints */
