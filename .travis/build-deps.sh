@@ -110,8 +110,9 @@ build_openssl_mingw () {
             export TARGET=mingw64
         fi
 
-        ./Configure --cross-compile-prefix=${CHOST}- shared \
-           ${TARGET} no-multilib no-capieng --prefix="${PREFIX}" --openssldir="${PREFIX}" -static-libgcc
+        ./Configure --cross-compile-prefix=${CHOST}- shared ${TARGET} \
+           $([[ ${OPENSSL_VERSION} == "1.0."* ]] && echo "no-multilib") \
+           no-capieng --prefix="${PREFIX}" --openssldir="${PREFIX}" -static-libgcc
         make install
     )
 }
