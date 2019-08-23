@@ -86,7 +86,7 @@ download_openssl () {
 build_openssl_linux () {
     (
         cd "openssl-${OPENSSL_VERSION}/"
-        ./config shared --prefix="${PREFIX}" --openssldir="${PREFIX}" -DPURIFY
+        ./config shared no-deprecated --prefix="${PREFIX}" --openssldir="${PREFIX}" -DPURIFY
         make all install_sw
     )
 }
