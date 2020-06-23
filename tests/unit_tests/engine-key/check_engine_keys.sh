@@ -8,6 +8,10 @@ password='AT3S4PASSWD'
 key="${builddir}/client.key"
 pwdfile="${builddir}/passwd"
 
+grep_a_log () {
+  grep -q $1 $2 || { echo $3; cat $2 ; exit 1; }
+}
+
 # create an engine key for us
 sed 's/PRIVATE KEY/TEST ENGINE KEY/' < ${top_srcdir}/sample/sample-keys/client.key > ${key}
 echo "$password" > $pwdfile
@@ -21,10 +25,10 @@ ${top_builddir}/src/openvpn/openvpn --cd ${top_srcdir}/sample --config sample-co
 # first off check we died because of a key mismatch.  If this doesn't
 # pass, suspect openssl of returning different messages and update the
 # test accordingly
-grep -q 'X509_check_private_key:key values mismatch' log.txt || { echo "Key mismatch not detected"; exit 1; }
+grep_a_log 'X509_check_private_key:key values mismatch' log.txt 'Key mismatch not detected'
 
 # now look for the engine prints (these are under our control)
-grep -q 'ENGINE: engine_init called' log.txt || { echo "Engine initialization not detected"; exit 1; }
-grep -q 'ENGINE: engine_load_key called' log.txt || { echo "Key was not loaded from engine"; exit 1; }
-grep -q "ENGINE: engine_load_key got password ${password}" log.txt || { echo "Key password was not retrieved by the engine"; exit 1; }
+grep_a_log 'ENGINE: engine_init called' log.txt 'Engine initialization not detected'
+grep_a_log 'ENGINE: engine_load_key called' log.txt 'Key was not loaded from engine'
+grep_a_log "ENGINE: engine_load_key got password ${password}" log.txt 'Key password was not retrieved by the engine'
 exit 0
