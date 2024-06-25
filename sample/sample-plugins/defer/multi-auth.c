@@ -206,9 +206,21 @@ openvpn_plugin_open_v3(const int v3structver,
     if ((args->argv[4]) && !args->argv[5])
     {
         context->authid = strdup(args->argv[1]);
+        if (context->authid == NULL)
+        {
+            goto error;
+        }
         context->test_deferred_auth = atoi_null0(args->argv[2]);
         context->test_valid_user = strdup(args->argv[3]);
+        if (context->test_valid_user == NULL)
+        {
+	    goto error;
+        }
         context->test_valid_pass = strdup(args->argv[4]);
+        if (context->test_valid_pass == NULL)
+        {
+            goto error;
+        }
     }
     else
     {
