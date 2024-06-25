@@ -4965,6 +4965,10 @@ write_pid_file(const char *filename, const char *chroot_dir)
         if (!chroot_dir)
         {
             saved_pid_file_name = strdup(filename);
+            if (saved_pid_file_name == NULL)
+            {
+                msg(M_ERR, "Error when allocating memory for saved_pid_file_name");
+            }
         }
     }
 }
