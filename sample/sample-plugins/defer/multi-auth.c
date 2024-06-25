@@ -214,7 +214,7 @@ openvpn_plugin_open_v3(const int v3structver,
         context->test_valid_user = strdup(args->argv[3]);
         if (context->test_valid_user == NULL)
         {
-	    goto error;
+            goto error;
         }
         context->test_valid_pass = strdup(args->argv[4]);
         if (context->test_valid_pass == NULL)
