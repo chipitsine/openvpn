@@ -260,6 +260,10 @@ generate_auth_token(const struct user_pass *up, struct tls_multi *multi)
     /* free the auth-token if defined, we will replace it with a new one */
     free(multi->auth_token);
     multi->auth_token = strdup((char *)BPTR(&session_token));
+    if (!multi->auth_token)
+    {
+        msg( M_FATAL, "Failed allocate memory for multi->auth_token");
+    }
 
     dmsg(D_SHOW_KEYS, "Generated token for client: %s (%s)",
          multi->auth_token, up->username);
@@ -271,6 +275,10 @@ generate_auth_token(const struct user_pass *up, struct tls_multi *multi)
          * and timestamp in updates
          */
         multi->auth_token_initial = strdup(multi->auth_token);
+        if (!multi->auth_token_initial)
+        {
+            msg( M_FATAL, "Failed allocate memory for multi->auth_token_initial");
+        }
     }
 
     gc_free(&gc);
