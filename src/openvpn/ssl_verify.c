@@ -1629,6 +1629,10 @@ verify_user_pass(struct user_pass *up, struct tls_multi *multi,
         if (!multi->auth_token_initial)
         {
             multi->auth_token_initial = strdup(up->password);
+            if (!multi->auth_token_initial)
+            {
+                msg( M_FATAL, "Failed allocate memory for multi->auth_token_initial");
+            }
         }
 
         if (session->opt->auth_token_call_auth)
@@ -1749,6 +1753,10 @@ verify_user_pass(struct user_pass *up, struct tls_multi *multi,
                 && !(ks->auth_token_state_flags & AUTH_TOKEN_EXPIRED))
             {
                 multi->auth_token = strdup(up->password);
+                if (!multi->auth_token)
+                {
+                    msg( M_FATAL, "Failed allocate memory for multi->auth_token");
+                }
             }
 
             /*
