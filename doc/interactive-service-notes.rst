@@ -327,4 +327,12 @@ Installing a Non-default Interactive Service Instance
    At the time writing, the OpenVPN GUI client supports connecting to the
    default Interactive Service instance only.
 
+
+See Also
+--------
+
+For information about setting up OpenVPN for Pre-Logon Access Provider (PLAP)
+functionality on Windows, which enables VPN connectivity before user logon
+(useful for Active Directory integration), see ``plap-notes.rst``.
+
 .. _`Gert's email`: https://www.mail-archive.com/openvpn-devel@lists.sourceforge.net/msg00097.html
