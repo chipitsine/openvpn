@@ -21,7 +21,7 @@ build_man_pages = openvpn.8 openvpn-examples.5
 build_html_pages = openvpn.8.html openvpn-examples.5.html
 
 dist_doc_DATA = \
-	management-notes.txt gui-notes.txt
+	management-notes.txt gui-notes.txt plap-notes.rst
 
 openvpn_sections = \
 	man-sections/advanced-options.rst \
@@ -59,6 +59,7 @@ dist_noinst_DATA = \
 	keying-material-exporter.txt \
 	openvpn.8.rst \
 	openvpn-examples.5.rst \
+	plap-notes.rst \
 	README.man \
 	README.plugins \
 	tls-crypt-v2.txt \
