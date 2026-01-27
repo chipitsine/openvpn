@@ -359,9 +359,9 @@ For organizations using automated configuration generation:
        
        ca ca.crt
        # Use machine certificate from Windows Certificate Store
-       cryptoapicert "SUBJ:{{COMPUTERNAME}}"
+       cryptoapicert "SUBJ:CN=<ComputerName>"
        
-       management 127.0.0.1 {{7500 + HOSTID}}
+       management 127.0.0.1 <7500 + HOSTID>
        
        persist-key
        persist-tun
@@ -549,7 +549,7 @@ Client Configuration (``ad-plap.ovpn``)
     
     # Certificate authentication using Windows Certificate Store
     ca ca.crt
-    cryptoapicert "SUBJ:CN=ComputerName"
+    cryptoapicert "SUBJ:CN=<ComputerName>"
     
     # Cipher and authentication
     cipher AES-256-GCM
